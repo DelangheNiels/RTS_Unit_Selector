@@ -3,21 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
-#include "RTSGameMode.generated.h"
+#include "GameFramework/PlayerController.h"
+#include "RTSController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class RTS_UNIT_SELECTOR_API ARTSGameMode : public AGameModeBase
+class RTS_UNIT_SELECTOR_API ARTSController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-	ARTSGameMode();
-	
+	ARTSController();
+
 
 protected:
 	virtual void BeginPlay() override;
+
+
+private:
+	FInputModeGameAndUI inputMode;
+	
 };

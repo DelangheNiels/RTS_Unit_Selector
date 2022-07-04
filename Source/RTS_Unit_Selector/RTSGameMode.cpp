@@ -3,3 +3,11 @@
 
 #include "RTSGameMode.h"
 
+ARTSGameMode::ARTSGameMode()
+{
+
+}
+
+void ARTSGameMode::BeginPlay()
+{
+}
