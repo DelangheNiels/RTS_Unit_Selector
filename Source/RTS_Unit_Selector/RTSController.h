@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+
+#include "RTSMarqueeHUD.h"
+
 #include "RTSController.generated.h"
+
 
 /**
  * 
@@ -17,12 +21,20 @@ class RTS_UNIT_SELECTOR_API ARTSController : public APlayerController
 public:
 	ARTSController();
 
-
 protected:
 	virtual void BeginPlay() override;
 
+	virtual void SetupInputComponent() override;
 
 private:
 	FInputModeGameAndUI inputMode;
 	
+	APlayerController* m_pPlayerController;
+
+	ARTSMarqueeHUD* m_pHud;
+
+private:
+
+	void StartSelection();
+	void EndSelection();
 };
