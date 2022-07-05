@@ -17,6 +17,9 @@ class RTS_UNIT_SELECTOR_API ARTSMarqueeHUD : public AHUD
 public:
 	ARTSMarqueeHUD();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MarqueeColor)
+		FVector4 m_MarqueeColor;
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void DrawHUD() override;
