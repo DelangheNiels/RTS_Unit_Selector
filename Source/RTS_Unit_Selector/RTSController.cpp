@@ -36,6 +36,19 @@ void ARTSController::SetupInputComponent()
 	InputComponent->BindAction("DrawMarquee", IE_Released, this, &ARTSController::EndSelection);
 }
 
+void ARTSController::AddUnitToSelection(ABaseUnit* unit)
+{
+	auto index = m_SelectedUnits.Add(unit);
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(index));
+}
+
+void ARTSController::RemoveUnitFromSelection(ABaseUnit* unit)
+{
+	m_SelectedUnits.Remove(unit);
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(m_SelectedUnits.Num()));
+	
+}
+
 void ARTSController::StartSelection()
 {
 	if(m_pHud)

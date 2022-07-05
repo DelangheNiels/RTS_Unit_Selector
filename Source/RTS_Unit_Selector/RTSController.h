@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 
 #include "RTSMarqueeHUD.h"
+#include "BaseUnit.h"
 
 #include "RTSController.generated.h"
 
@@ -32,6 +33,12 @@ private:
 	APlayerController* m_pPlayerController;
 
 	ARTSMarqueeHUD* m_pHud;
+
+	TArray<ABaseUnit*> m_SelectedUnits{};
+
+public:
+	void AddUnitToSelection(ABaseUnit* unit);
+	void RemoveUnitFromSelection(ABaseUnit* unit);
 
 private:
 
