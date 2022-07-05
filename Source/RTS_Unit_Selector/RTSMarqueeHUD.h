@@ -9,6 +9,10 @@
 /**
  * 
  */
+
+class ABaseUnit;
+class ARTSController;
+
 UCLASS()
 class RTS_UNIT_SELECTOR_API ARTSMarqueeHUD : public AHUD
 {
@@ -29,8 +33,9 @@ private:
 
 	FVector2D m_StartPoint{}, m_EndPoint{};
 
-	APlayerController* m_pPlayerController;
+	ARTSController* m_pRTSController;
 
+	TArray<ABaseUnit*> m_SelectedUnits{};
 
 public:
 

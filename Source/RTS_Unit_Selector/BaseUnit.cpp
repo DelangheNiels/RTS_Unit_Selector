@@ -57,23 +57,23 @@ void ABaseUnit::NotifyActorOnClicked(FKey ButtonPressed)
 	{
 		if (m_pDecal->IsVisible())
 		{
-			m_pDecal->SetVisibility(false);
-
 			if (m_pRTSController)
 				m_pRTSController->RemoveUnitFromSelection(this);
-
 		}
 
 		else
 		{
-			m_pDecal->SetVisibility(true);
-
 			if (m_pRTSController)
 				m_pRTSController->AddUnitToSelection(this);
 		}
 			
 	}
 	
+}
+
+void ABaseUnit::SetSelected(bool isSelected)
+{
+	m_pDecal->SetVisibility(isSelected);
 }
 
 

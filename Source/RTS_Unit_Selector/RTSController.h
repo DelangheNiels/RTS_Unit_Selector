@@ -44,4 +44,5 @@ private:
 
 	void StartSelection();
 	void EndSelection();
+	void ClearSelection();
 };

@@ -39,25 +39,42 @@ void ARTSController::SetupInputComponent()
 void ARTSController::AddUnitToSelection(ABaseUnit* unit)
 {
 	m_SelectedUnits.Add(unit);
+	unit->SetSelected(true);
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(index));
 }
 
 void ARTSController::RemoveUnitFromSelection(ABaseUnit* unit)
 {
 	m_SelectedUnits.Remove(unit);
+	unit->SetSelected(false);
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(m_SelectedUnits.Num()));
 	
 }
 
 void ARTSController::StartSelection()
 {
-	if(m_pHud)
+	if (m_pHud)
+	{
+		ClearSelection();
 		m_pHud->StartSelection();
+		
+	}
+		
 }
 
 void ARTSController::EndSelection()
 {
 	if(m_pHud)
 		m_pHud->StopSelection();
+}
+
+void ARTSController::ClearSelection()
+{
+	for(ABaseUnit* &unit : m_SelectedUnits)
+	{
+		unit->SetSelected(false);
+	}
+
+	m_SelectedUnits.Empty();
 }
 

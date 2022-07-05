@@ -49,4 +49,6 @@ public:
 
 	void NotifyActorOnClicked(FKey ButtonPressed = EKeys::LeftMouseButton) override;
 
+	void SetSelected(bool isSelected);
+
 };
