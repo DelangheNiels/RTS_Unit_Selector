@@ -6,6 +6,10 @@
 #include "Components/InputComponent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardData.h"
+#include "BehaviorTree/BlackboardComponent.h"
+
 
 ARTSController::ARTSController()
 {
@@ -34,6 +38,8 @@ void ARTSController::SetupInputComponent()
 
 	InputComponent->BindAction("DrawMarquee", IE_Pressed, this, &ARTSController::StartSelection);
 	InputComponent->BindAction("DrawMarquee", IE_Released, this, &ARTSController::EndSelection);
+
+	InputComponent->BindAction("SelectLocation", IE_Pressed, this, &ARTSController::SelectLocation);
 }
 
 void ARTSController::AddUnitToSelection(ABaseUnit* unit)
@@ -76,5 +82,27 @@ void ARTSController::ClearSelection()
 	}
 
 	m_SelectedUnits.Empty();
+}
+
+void ARTSController::SelectLocation()
+{
+	
+	FHitResult hitResult;
+	//Move to location when trace does not hit player
+	if (!GetHitResultUnderCursor(ECollisionChannel::ECC_GameTraceChannel1, true, hitResult))
+	{
+
+		//Get hit location
+		GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, hitResult);
+
+		for (auto& unit : m_SelectedUnits)
+		{
+			if (unit->GetBlackboardComponent())
+			{
+				unit->GetBlackboardComponent()->SetValueAsVector("TargetLocation", hitResult.Location);
+			}
+				
+		}
+	}
 }
 

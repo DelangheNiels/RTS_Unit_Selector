@@ -12,6 +12,8 @@
 
 
 class ARTSController;
+class UBehaviorTree;
+class UBlackboardComponent;
 
 UCLASS()
 class RTS_UNIT_SELECTOR_API ABaseUnit : public ACharacter
@@ -28,12 +30,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Decals)
 		FVector m_DecalScale;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = AI)
+		UBehaviorTree* m_pBehaviorTree;
+
 
 private:
 
 	UDecalComponent* m_pDecal;
 
 	ARTSController* m_pRTSController;
+
+	UBlackboardComponent* m_pBlackboardComponent;
 
 
 protected:
@@ -50,5 +57,8 @@ public:
 	void NotifyActorOnClicked(FKey ButtonPressed = EKeys::LeftMouseButton) override;
 
 	void SetSelected(bool isSelected);
+
+	UBlackboardComponent* GetBlackboardComponent();
+	void SetBlackboardComponent(UBlackboardComponent* blackboardComp);
 
 };

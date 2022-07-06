@@ -76,6 +76,22 @@ void ABaseUnit::SetSelected(bool isSelected)
 	m_pDecal->SetVisibility(isSelected);
 }
 
+UBlackboardComponent* ABaseUnit::GetBlackboardComponent()
+{
+	return m_pBlackboardComponent;
+}
+
+void ABaseUnit::SetBlackboardComponent(UBlackboardComponent* blackboardComp)
+{
+	if(blackboardComp)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("test"));
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("empty"));
+	}
+	m_pBlackboardComponent = blackboardComp;
+}
+
 
 
 

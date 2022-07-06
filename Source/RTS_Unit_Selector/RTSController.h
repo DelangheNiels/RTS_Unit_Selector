@@ -45,4 +45,6 @@ private:
 	void StartSelection();
 	void EndSelection();
 	void ClearSelection();
+
+	void SelectLocation();
 };
