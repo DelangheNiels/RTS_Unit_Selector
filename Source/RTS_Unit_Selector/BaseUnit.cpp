@@ -4,10 +4,12 @@
 #include "BaseUnit.h"
 
 #include "Components/PrimitiveComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 #include "RTSController.h"
 
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+
 
 // Sets default values
 ABaseUnit::ABaseUnit()
@@ -33,6 +35,8 @@ void ABaseUnit::BeginPlay()
 	m_pDecal->SetWorldRotation(FRotator(-90,0,0));
 	m_pDecal->SetWorldScale3D(FVector(m_DecalScale.X, m_DecalScale.Y, m_DecalScale.Z));
 	m_pDecal->SetVisibility(false);
+
+	GetCharacterMovement()->MaxWalkSpeed = 1200;
 }
 
 // Called every frame
