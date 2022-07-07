@@ -36,15 +36,23 @@ private:
 
 	TArray<ABaseUnit*> m_SelectedUnits{};
 
+	bool m_UseMultiSelect;
+
 public:
 	void AddUnitToSelection(ABaseUnit* unit);
 	void RemoveUnitFromSelection(ABaseUnit* unit);
+
+	void ClearSelection();
+
+	bool IsMultiSelectEnabled() const;
 
 private:
 
 	void StartSelection();
 	void EndSelection();
-	void ClearSelection();
 
 	void SelectLocation();
+
+	void EnableMultiSelect();
+	void DisableMultiSelect();
 };

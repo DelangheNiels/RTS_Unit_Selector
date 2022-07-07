@@ -68,7 +68,13 @@ void ABaseUnit::NotifyActorOnClicked(FKey ButtonPressed)
 		else
 		{
 			if (m_pRTSController)
+			{
+				if (!m_pRTSController->IsMultiSelectEnabled())
+					m_pRTSController->ClearSelection();
+
 				m_pRTSController->AddUnitToSelection(this);
+			}
+				
 		}
 			
 	}

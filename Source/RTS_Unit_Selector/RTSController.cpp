@@ -13,7 +13,7 @@
 
 ARTSController::ARTSController()
 {
-
+	m_UseMultiSelect = false;
 }
 
 void ARTSController::BeginPlay()
@@ -40,28 +40,34 @@ void ARTSController::SetupInputComponent()
 	InputComponent->BindAction("DrawMarquee", IE_Released, this, &ARTSController::EndSelection);
 
 	InputComponent->BindAction("SelectLocation", IE_Pressed, this, &ARTSController::SelectLocation);
+
+	InputComponent->BindAction("MultiSelect", IE_Pressed, this, &ARTSController::EnableMultiSelect);
+	InputComponent->BindAction("MultiSelect", IE_Released, this, &ARTSController::DisableMultiSelect);
 }
 
 void ARTSController::AddUnitToSelection(ABaseUnit* unit)
 {
 	m_SelectedUnits.Add(unit);
 	unit->SetSelected(true);
-	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(index));
 }
 
 void ARTSController::RemoveUnitFromSelection(ABaseUnit* unit)
 {
 	m_SelectedUnits.Remove(unit);
 	unit->SetSelected(false);
-	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::FromInt(m_SelectedUnits.Num()));
-	
+}
+
+bool ARTSController::IsMultiSelectEnabled() const
+{
+	return m_UseMultiSelect;
 }
 
 void ARTSController::StartSelection()
 {
 	if (m_pHud)
 	{
-		ClearSelection();
+		if(!m_UseMultiSelect)
+			ClearSelection();
 		m_pHud->StartSelection();
 		
 	}
@@ -104,5 +110,15 @@ void ARTSController::SelectLocation()
 				
 		}
 	}
+}
+
+void ARTSController::EnableMultiSelect()
+{
+	m_UseMultiSelect = true;
+}
+
+void ARTSController::DisableMultiSelect()
+{
+	m_UseMultiSelect = false;
 }
 
